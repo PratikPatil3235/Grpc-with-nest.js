@@ -1,18 +1,24 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
-import { CreateUserDto ,PaginationDto,UpdateUserDto, USER_SERVICE_NAME, UserServiceClient } from '@app/common';
+import {
+  CreateUserDto,
+  PaginationDto,
+  UpdateUserDto,
+  USER_SERVICE_NAME,
+  UserServiceClient,
+} from '@app/common';
 import { AUTH_SERVICE } from './constants';
 import { ClientGrpc } from '@nestjs/microservices';
-import { ReplaySubject, } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 
 @Injectable()
 export class UsersService implements OnModuleInit {
-
   private userService: UserServiceClient;
-  
-  constructor(@Inject(AUTH_SERVICE) private client: ClientGrpc) { }
-  
+
+  constructor(@Inject(AUTH_SERVICE) private client: ClientGrpc) {}
+
   onModuleInit() {
-    this.userService=this.client.getService<UserServiceClient>(USER_SERVICE_NAME)
+    this.userService =
+      this.client.getService<UserServiceClient>(USER_SERVICE_NAME);
   }
 
   create(createUserDto: CreateUserDto) {
@@ -28,11 +34,11 @@ export class UsersService implements OnModuleInit {
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {
-    return this.userService.updateUser({...updateUserDto, id });
+    return this.userService.updateUser({ ...updateUserDto, id });
   }
 
   remove(id: string) {
-    return this.userService.removeUser({id});
+    return this.userService.removeUser({ id });
   }
 
   emailUsers() {
@@ -48,9 +54,8 @@ export class UsersService implements OnModuleInit {
     let chunkNumber = 1;
 
     this.userService.queryUsers(users$).subscribe((users) => {
-      console.log(`Chunk`, chunkNumber , users);
+      console.log(`Chunk`, chunkNumber, users);
       chunkNumber += 1;
-    })
+    });
   }
-
 }

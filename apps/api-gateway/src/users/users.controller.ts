@@ -1,6 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
-import { UpdateUserDto ,CreateUserDto} from '@app/common';
+import { UpdateUserDto, CreateUserDto } from '@app/common';
 
 @Controller('users')
 export class UsersController {
@@ -33,6 +41,6 @@ export class UsersController {
 
   @Post('email')
   emailUsers() {
-    return this.usersService.emailUsers()
+    return this.usersService.emailUsers();
   }
 }
