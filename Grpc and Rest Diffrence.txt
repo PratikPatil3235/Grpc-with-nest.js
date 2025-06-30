@@ -1,0 +1,15 @@
+Grpc and Rest Diffrence 
+
+| Feature                    | **gRPC**                                           | **REST**                                        |
+| -------------------------- | -------------------------------------------------- | ----------------------------------------------- |
+| **Protocol**               | HTTP/2 (binary)                                    | HTTP/1.1 or HTTP/2 (text-based)                 |
+| **Data Format**            | Protocol Buffers (protobuf - binary)               | JSON (mostly)                                   |
+| **Performance**            | High (small, fast binary data)                     | Slower (text data, larger payloads)             |
+| **Streaming Support**      | Built-in bi-directional streaming                  | Limited (usually one-way request/response)      |
+| **Browser Support**        | Not direct (requires gRPC-Web proxy)               | Native support in all browsers                  |
+| **Ease of Use**            | Requires learning protobuf, code generation        | Easy to get started, human-readable             |
+| **Error Handling**         | Standardized via status codes in protobuf          | HTTP status codes, not always used consistently |
+| **Tooling**                | Needs `protoc`, codegen per language               | Easy to test (e.g. with Postman, curl)          |
+| **Language Support**       | Strong (uses codegen for multiple languages)       | Any language with HTTP support                  |
+| **Service-to-Service Use** | Excellent (high-performance internal comms)        | OK, but slower than gRPC                        |
+| **Versioning**             | Easy with protobuf (`optional`, `reserved` fields) | More difficult (URLs, headers, etc.)            |
